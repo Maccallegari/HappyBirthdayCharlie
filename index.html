@@ -6,71 +6,77 @@
 <title>Happy 30th, Charlie! 🐶💛</title>
 <meta name="description" content="A sweet, interactive collage for Charlie's 30th birthday!" />
 <style>
-  :root {
-    --bg: #0b0b10;
-    --panel: #11131a;
-    --ink: #f7f8fb;
-    --ink-dim: #b9c0d9;
-    --brand: #ff7bb0;
-    --brand-2: #ffd36e;
-    --accent: #7bdff6;
-    --shadow: 0 10px 30px rgba(0,0,0,.35);
-    --radius: 18px;
-  }
-  html, body { height:100%; margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial; 
-    background: radial-gradient(1200px 800px at 80% -10%, rgba(255,123,176,.08), transparent 60%),
-                radial-gradient(800px 600px at 0% 100%, rgba(123,223,246,.07), transparent 60%),
-                var(--bg);
-    color: var(--ink);
-  }
-  header.hero { padding: 48px 20px 16px; text-align:center; }
-  .headline { font-size: clamp(28px,5vw,48px); margin:0 0 10px; }
-  .subhead { font-size: clamp(14px,2.4vw,18px); margin:0; color:var(--ink-dim); }
-  .controls {
-    position: sticky; top:0; z-index:5;
-    background: rgba(11,11,16,.85); backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    padding:12px 10px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
-  }
-  .btn {
-    border:0; border-radius:999px; padding:10px 14px; cursor:pointer;
-    background: linear-gradient(180deg,#1b1f2a,#12151d);
-    color:var(--ink); box-shadow: var(--shadow);
-    display:inline-flex; align-items:center; gap:8px;
-  }
-  .slider { accent-color: var(--brand); }
-  .gallery-wrap { max-width:1400px; margin:20px auto; padding:0 14px 60px; }
-  .masonry { column-gap:14px; }
-  .masonry[data-cols="2"]{ column-count:2; }
-  .masonry[data-cols="3"]{ column-count:3; }
-  .masonry[data-cols="4"]{ column-count:4; }
-  .masonry[data-cols="5"]{ column-count:5; }
-  @media(max-width:800px){ .masonry{ column-count:2 !important; } }
-  @media(max-width:520px){ .masonry{ column-count:1 !important; } }
-  .card { break-inside: avoid; margin:0 0 14px; border-radius: var(--radius); overflow:hidden; background:var(--panel); box-shadow:var(--shadow); position:relative; }
-  .card img { width:100%; display:block; height:auto; transition: transform .35s ease; }
-  .card:hover img { transform: scale(1.02); }
-  .cap { position:absolute; left:10px; bottom:10px; right:10px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.55)); color:#fff; border-radius:12px; padding:32px 10px 10px; font-size:13px; }
-  .lightbox { position:fixed; inset:0; background: rgba(0,0,0,.9); display:none; align-items:center; justify-content:center; z-index:50; }
-  .lightbox.open { display:flex; }
-  .lightbox-inner { position:relative; width:min(92vw,1200px); height:min(86vh,900px); display:grid; place-items:center; }
-  .lb-img { max-width:100%; max-height:100%; border-radius:12px; box-shadow:var(--shadow); }
-  .lb-cap { position:absolute; left:0; right:0; bottom:-2px; padding:14px 16px; color:#fff; font-size:14px; text-align:center; background: linear-gradient(180deg, transparent, rgba(0,0,0,.6)); }
-  .lb-prev, .lb-next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); font-size:18px; padding:12px 14px; border-radius:12px; cursor:pointer; }
-  .lb-prev { left:16px; } .lb-next { right:16px; }
-  .hearts { pointer-events:none; position:fixed; inset:0; overflow:hidden; z-index:40; }
-  .heart { position:absolute; width:16px; height:16px; transform:rotate(45deg); animation: floatUp 4.5s ease-in forwards; opacity:.9; }
-  .heart:before, .heart:after { content:""; position:absolute; width:16px; height:16px; background:inherit; border-radius:50%; }
-  .heart:before { left:-8px; } .heart:after { top:-8px; }
-  @keyframes floatUp {
-    0% { transform: translateY(20px) scale(.8) rotate(45deg); opacity:0; }
-    15% { opacity:1; }
-    100% { transform: translateY(-120vh) scale(1.2) rotate(45deg); opacity:0; }
-  }
-  footer { text-align:center; color:var(--ink-dim); padding:24px 12px 64px; }
+:root {
+  --bg: #0b0b10;
+  --panel: #11131a;
+  --ink: #f7f8fb;
+  --ink-dim: #b9c0d9;
+  --brand: #ff7bb0;
+  --brand-2: #ffd36e;
+  --accent: #7bdff6;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 18px;
+}
+html, body { height:100%; margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial; 
+  background: radial-gradient(1200px 800px at 80% -10%, rgba(255,123,176,.08), transparent 60%),
+              radial-gradient(800px 600px at 0% 100%, rgba(123,223,246,.07), transparent 60%),
+              var(--bg);
+  color: var(--ink);
+  position: relative;
+  overflow-x: hidden;
+}
+header.hero { padding: 48px 20px 16px; text-align:center; z-index:1; position: relative; }
+.headline { font-size: clamp(28px,5vw,48px); margin:0 0 10px; }
+.subhead { font-size: clamp(14px,2.4vw,18px); margin:0; color:var(--ink-dim); }
+.controls {
+  position: sticky; top:0; z-index:1;
+  background: rgba(11,11,16,.85); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  padding:12px 10px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+}
+.btn {
+  border:0; border-radius:999px; padding:10px 14px; cursor:pointer;
+  background: linear-gradient(180deg,#1b1f2a,#12151d);
+  color:var(--ink); box-shadow: var(--shadow);
+  display:inline-flex; align-items:center; gap:8px;
+}
+.slider { accent-color: var(--brand); }
+.gallery-wrap { max-width:1400px; margin:20px auto; padding:0 14px 60px; z-index:1; position: relative; }
+.masonry { column-gap:14px; }
+.masonry[data-cols="2"]{ column-count:2; }
+.masonry[data-cols="3"]{ column-count:3; }
+.masonry[data-cols="4"]{ column-count:4; }
+.masonry[data-cols="5"]{ column-count:5; }
+@media(max-width:800px){ .masonry{ column-count:2 !important; } }
+@media(max-width:520px){ .masonry{ column-count:1 !important; } }
+.card { break-inside: avoid; margin:0 0 14px; border-radius: var(--radius); overflow:hidden; background:var(--panel); box-shadow:var(--shadow); position:relative; }
+.card img { width:100%; display:block; height:auto; transition: transform .35s ease; }
+.card:hover img { transform: scale(1.02); }
+.cap { position:absolute; left:10px; bottom:10px; right:10px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.55)); color:#fff; border-radius:12px; padding:32px 10px 10px; font-size:13px; }
+.lightbox { position:fixed; inset:0; background: rgba(0,0,0,.9); display:none; align-items:center; justify-content:center; z-index:50; }
+.lightbox.open { display:flex; }
+.lightbox-inner { position:relative; width:min(92vw,1200px); height:min(86vh,900px); display:grid; place-items:center; }
+.lb-img { max-width:100%; max-height:100%; border-radius:12px; box-shadow:var(--shadow); }
+.lb-cap { position:absolute; left:0; right:0; bottom:-2px; padding:14px 16px; color:#fff; font-size:14px; text-align:center; background: linear-gradient(180deg, transparent, rgba(0,0,0,.6)); }
+.lb-prev, .lb-next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); font-size:18px; padding:12px 14px; border-radius:12px; cursor:pointer; }
+.lb-prev { left:16px; } .lb-next { right:16px; }
+.hearts { pointer-events:none; position:fixed; inset:0; overflow:hidden; z-index:0; }
+.heart { position:absolute; width:16px; height:16px; transform:rotate(45deg); animation: floatUp 6s linear forwards; opacity:.6; }
+.heart:before, .heart:after { content:""; position:absolute; width:16px; height:16px; background:inherit; border-radius:50%; }
+.heart:before { left:-8px; } .heart:after { top:-8px; }
+@keyframes floatUp {
+  0% { transform: translateY(20px) scale(.8) rotate(45deg); opacity:0; }
+  15% { opacity:1; }
+  100% { transform: translateY(-120vh) scale(1.2) rotate(45deg); opacity:0; }
+}
+footer { text-align:center; color:var(--ink-dim); padding:24px 12px 64px; z-index:1; position: relative; }
 </style>
 </head>
 <body>
+
+<!-- Hearts background -->
+<div id="hearts" class="hearts"></div>
+
 <header class="hero">
   <h1 class="headline">Happy 30th, <span id="gf-name">Charlie</span>! 🎉🐶</h1>
   <p class="subhead">A little wall of our favourite moments. Click any photo to open it, use ◀ ▶ to navigate, and enjoy the hearts! 💖</p>
@@ -92,4 +98,84 @@
     <img id="lbImg" class="lb-img" alt=""/>
     <div id="lbCap" class="lb-cap"></div>
     <button id="lbPrev" class="lb-prev">◀</button>
-    <button id="lbNext" class=
+    <button id="lbNext" class="lb-next">▶</button>
+  </div>
+</div>
+
+<footer>Made with 💛 for Charlie's 30th birthday.</footer>
+
+<script>
+const IMAGES = [
+  {src:"images/IMG_1713.jpg", cap:"Charlie & Buddy at the park 🐶"},
+  {src:"images/IMG_1895.jpg", cap:"Candid smile 😊"},
+  {src:"images/IMG_2055.png", cap:"Lazy Sunday vibes 🛋️"},
+  {src:"images/IMG_2056.jpg", cap:"Morning coffee together ☕"},
+  {src:"images/IMG_2488.jpg", cap:"Beach day fun 🏖️"},
+  {src:"images/IMG_2501.jpg", cap:"Laughing together 😂"},
+  {src:"images/IMG_2599.jpg", cap:"Our little adventures 🚗"},
+  {src:"images/IMG_2619.jpg", cap:"Cozy cuddles 🫂"},
+  {src:"images/IMG_3333.jpg", cap:"Celebration moments 🎉"},
+  {src:"images/a4d5f650-9566-41cd-b365-bc3aa1e47111.jpg", cap:"Best memories forever 💛"}
+];
+
+const gallery = document.getElementById("gallery");
+function buildGrid() {
+  gallery.innerHTML="";
+  IMAGES.forEach((imgObj,i)=>{
+    const fig = document.createElement("figure");
+    fig.className="card";
+    const img = document.createElement("img");
+    img.src=imgObj.src; img.alt=imgObj.cap;
+    img.addEventListener("click",()=>openLightbox(i));
+    const cap = document.createElement("figcaption");
+    cap.className="cap"; cap.textContent=imgObj.cap;
+    fig.append(img,cap);
+    gallery.appendChild(fig);
+  });
+}
+
+const lb=document.getElementById("lightbox");
+const lbImg=document.getElementById("lbImg");
+const lbCap=document.getElementById("lbCap");
+let idx=0;
+function openLightbox(i){ idx=i; render(); lb.classList.add("open"); }
+function render(){ lbImg.src=IMAGES[idx].src; lbCap.textContent=IMAGES[idx].cap; }
+document.getElementById("lbPrev").onclick=()=>{ idx=(idx-1+IMAGES.length)%IMAGES.length; render(); };
+document.getElementById("lbNext").onclick=()=>{ idx=(idx+1)%IMAGES.length; render(); };
+lb.onclick=(e)=>{ if(e.target===lb) lb.classList.remove("open"); };
+
+const colsSlider=document.getElementById("cols");
+colsSlider.oninput=(e)=>{ gallery.dataset.cols=e.target.value; };
+
+const nameInput=document.getElementById("nameInput");
+nameInput.oninput=(e)=>{ document.getElementById("gf-name").textContent=e.target.value||"Charlie"; };
+
+let slideShowInterval=null;
+document.getElementById("playBtn").onclick=()=>{
+  if(slideShowInterval){ clearInterval(slideShowInterval); slideShowInterval=null; return; }
+  slideShowInterval=setInterval(()=>{ idx=(idx+1)%IMAGES.length; openLightbox(idx); },3000);
+};
+
+document.getElementById("shuffleBtn").onclick=()=>{
+  IMAGES.sort(()=>Math.random()-0.5); buildGrid();
+};
+
+// Continuous floating hearts behind content
+const heartsContainer = document.getElementById("hearts");
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  const size = 8 + Math.random() * 16;
+  heart.style.width = heart.style.height = size + "px";
+  const colors = ["#ff7bb0", "#ffd36e", "#ff4d6d", "#ff94c2", "#ffb3e6"];
+  heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+  heartsContainer.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 300);
+
+buildGrid();
+</script>
+</body>
+</html>
