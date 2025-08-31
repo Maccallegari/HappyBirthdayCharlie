@@ -79,7 +79,6 @@
 <div class="controls">
   <button id="playBtn" class="btn">▶ Play Slideshow</button>
   <button id="shuffleBtn" class="btn">🔀 Shuffle</button>
-  <button id="heartsBtn" class="btn">💖 Celebrate</button>
   <label class="btn">🧱 Grid <input id="cols" class="slider" type="range" min="2" max="5" value="4"/></label>
   <label class="btn">✏️ Name <input id="nameInput" type="text" placeholder="Her name" style="background:transparent;border:0;outline:none;color:var(--ink);width:120px"/></label>
 </div>
@@ -93,86 +92,4 @@
     <img id="lbImg" class="lb-img" alt=""/>
     <div id="lbCap" class="lb-cap"></div>
     <button id="lbPrev" class="lb-prev">◀</button>
-    <button id="lbNext" class="lb-next">▶</button>
-  </div>
-</div>
-
-<div id="hearts" class="hearts"></div>
-
-<footer>Made with 💛 for Charlie's 30th birthday.</footer>
-
-<script>
-const IMAGES = [
-  {src:"images/IMG_1713.jpg", cap:"Charlie & Buddy at the park 🐶"},
-  {src:"images/IMG_1895.jpg", cap:"Candid smile 😊"},
-  {src:"images/IMG_2055.png", cap:"Lazy Sunday vibes 🛋️"},
-  {src:"images/IMG_2056.jpg", cap:"Morning coffee together ☕"},
-  {src:"images/IMG_2488.jpg", cap:"Beach day fun 🏖️"},
-  {src:"images/IMG_2501.jpg", cap:"Laughing together 😂"},
-  {src:"images/IMG_2599.jpg", cap:"Our little adventures 🚗"},
-  {src:"images/IMG_2619.jpg", cap:"Cozy cuddles 🫂"},
-  {src:"images/IMG_3333.jpg", cap:"Celebration moments 🎉"},
-  {src:"images/a4d5f650-9566-41cd-b365-bc3aa1e47111.jpg", cap:"Best memories forever 💛"}
-];
-
-const gallery = document.getElementById("gallery");
-function buildGrid() {
-  gallery.innerHTML="";
-  IMAGES.forEach((imgObj,i)=>{
-    const fig = document.createElement("figure");
-    fig.className="card";
-    const img = document.createElement("img");
-    img.src=imgObj.src; img.alt=imgObj.cap;
-    img.addEventListener("click",()=>openLightbox(i));
-    const cap = document.createElement("figcaption");
-    cap.className="cap"; cap.textContent=imgObj.cap;
-    fig.append(img,cap);
-    gallery.appendChild(fig);
-  });
-}
-
-const lb=document.getElementById("lightbox");
-const lbImg=document.getElementById("lbImg");
-const lbCap=document.getElementById("lbCap");
-let idx=0;
-function openLightbox(i){ idx=i; render(); lb.classList.add("open"); }
-function render(){ lbImg.src=IMAGES[idx].src; lbCap.textContent=IMAGES[idx].cap; }
-document.getElementById("lbPrev").onclick=()=>{ idx=(idx-1+IMAGES.length)%IMAGES.length; render(); };
-document.getElementById("lbNext").onclick=()=>{ idx=(idx+1)%IMAGES.length; render(); };
-lb.onclick=(e)=>{ if(e.target===lb) lb.classList.remove("open"); };
-
-const heartsContainer=document.getElementById("hearts");
-let heartsActive=false;
-function createHeart(){
-  const heart=document.createElement("div");
-  heart.className="heart"; heart.style.backgroundColor="pink";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.width=heart.style.height=(8+Math.random()*16)+"px";
-  heartsContainer.appendChild(heart);
-  setTimeout(()=>heart.remove(),4500);
-}
-document.getElementById("heartsBtn").onclick=()=>{
-  heartsActive=!heartsActive;
-  if(heartsActive){ heartInterval=setInterval(createHeart,300); } else { clearInterval(heartInterval); }
-};
-
-const colsSlider=document.getElementById("cols");
-colsSlider.oninput=(e)=>{ gallery.dataset.cols=e.target.value; };
-
-const nameInput=document.getElementById("nameInput");
-nameInput.oninput=(e)=>{ document.getElementById("gf-name").textContent=e.target.value||"Charlie"; };
-
-let slideShowInterval=null;
-document.getElementById("playBtn").onclick=()=>{
-  if(slideShowInterval){ clearInterval(slideShowInterval); slideShowInterval=null; return; }
-  slideShowInterval=setInterval(()=>{ idx=(idx+1)%IMAGES.length; openLightbox(idx); },3000);
-};
-
-document.getElementById("shuffleBtn").onclick=()=>{
-  IMAGES.sort(()=>Math.random()-0.5); buildGrid();
-};
-
-buildGrid();
-</script>
-</body>
-</html>
+    <button id="lbNext" class=
